@@ -8,7 +8,7 @@ namespace DSD01CalculatorForStudents.Pages
     [BindProperties]
     public class IndexModel : PageModel
     {
-        [Display(Name="First Number")]
+        [Display(Name = "First Number")]
         public double NumberA { get; set; }
 
         [Display(Name = "Second Number")]
@@ -24,7 +24,7 @@ namespace DSD01CalculatorForStudents.Pages
 
         public void OnPost()
         {
-
+            Result = NumberA + NumberB;
         }
     }
 }
