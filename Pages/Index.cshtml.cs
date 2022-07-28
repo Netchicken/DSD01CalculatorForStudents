@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using DSD01CalculatorForStudents.Operations;
+
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
@@ -29,6 +31,13 @@ namespace DSD01CalculatorForStudents.Pages
             new SelectListItem { Value = "Divide", Text = "Divide" }
         };
 
+        //made another list to hold all the answers in the static list, that is bound on the page.
+        public List<string> Answers = new List<string>();
+
+
+
+
+
         public void OnGet()
         {
 
@@ -37,7 +46,7 @@ namespace DSD01CalculatorForStudents.Pages
         public void OnPost()
         {
 
-           
+
 
             if (OperationSelection == "Add")
                 Result = NumberA + NumberB;
@@ -55,6 +64,14 @@ namespace DSD01CalculatorForStudents.Pages
                 Result = NumberA / NumberB;
             }
 
+            // AnswerList.Add($"{NumberA} {OperationSelection} {NumberB} = {Result}");
+
+
+            //add the data to the static list. where it is stored over all the page refreshes
+            StaticAnswerList.AnswerList.Add(NumberA + " " + OperationSelection + " " + NumberB + " = " + Result);
+
+            //pass that data back to the one that is on the front end
+            Answers.AddRange(StaticAnswerList.AnswerList);
 
         }
     }
